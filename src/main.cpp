@@ -29,6 +29,15 @@ float dot_prod(Vec3 *v1, Vec3 *v2) {
     return ((v1->x * v2->x) + (v1->y * v2->y) + (v1->z * v2->z));
 }
 
+Vec3 cross(Vec3 *v1, Vec3 *v2) {
+    Vec3 v3 = {};
+
+    v3.x = ((v1->y * v2->z) - (v1->z * v2->y));
+    v3.y = ((v1->z * v2->x) - (v1->x * v2->y));
+    v3.z = ((v1->x * v2->y) - (v1->y * v2->x));
+
+    return v3;
+}
 
 int main() {
     Vec3 v1 = {};
@@ -53,5 +62,8 @@ int main() {
     normalise(&v1);
     normalise(&v2);
     printf("V1 . V2: %f\r\n", dot_prod(&v1, &v2));
+    Vec3 v3 = cross(&v1, &v2);
+    printf("V3 = V1 X V2 = X: %f | Y: %f | Z: %f\r\n", v3.x, v3.y, v3.z);
+    
     return 0;
 }
